@@ -67,6 +67,8 @@ export default function Footer() {
           <ul className="space-y-2 text-[#d4af37]/80">
             <li><Link href="/players-ranking" className="hover:text-[#d4af37] transition">Players Ranking</Link></li>
             <li><Link href="/unique-log" className="hover:text-[#d4af37] transition">Uniques Log</Link></li>
+            <li><Link href="/unique-rank" className="hover:text-[#d4af37] transition">Uniques Rank</Link></li>
+            <li><Link href="/guild-rank" className="hover:text-[#d4af37] transition">Guild Rank</Link></li>
 
           </ul>
         </div>
