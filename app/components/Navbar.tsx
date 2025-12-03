@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
 import aa from "@/app/assets/images/velora.png";
+import { UserIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -73,7 +74,10 @@ export default function Navbar() {
             </>
           ) : (
             <div className="flex gap-6">
-              <Link href="/profile">Profile</Link>
+<Link href="/profile" className="flex items-center gap-2">
+  <UserIcon className="w-5 h-5 text-current" />
+  Profile
+</Link>
               <button className="cursor-pointer" onClick={handleLogout}>
                 Logout
               </button>
@@ -146,7 +150,7 @@ export default function Navbar() {
             </>
           ) : (
             <div className="flex flex-col gap-2">
-              <Link href="/profile" onClick={() => setIsOpen(false)}>
+              <Link href="/profile" onClick={() => setIsOpen(false)} className="">
                 Profile
               </Link>
               <button className="text-left" onClick={handleLogout}>

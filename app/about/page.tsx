@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 
-// استخدام فئات Tailwind قياسية للـ width والـ height
-const IMAGE_SIZE_CLASS = "w-36 h-36 md:w-48 md:h-48"; 
+const IMAGE_SIZE_CLASS = "w-36 h-36 md:w-48 md:h-48";
 
 export default function AboutPage() {
   const [modalImg, setModalImg] = useState<string | null>(null);
@@ -15,9 +13,9 @@ export default function AboutPage() {
 
   return (
     <main
-      className="relative min-h-screen text-white overflow-hidden"
+      className="relative text-white overflow-hidden"
       style={{
-        backgroundImage: "url('/bg-img/home.png')",
+        backgroundImage: "url('/bg-img/home1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -28,18 +26,6 @@ export default function AboutPage() {
       <div className="relative z-10 container mx-auto px-6 py-24 lg:py-40">
         <div className="max-w-4xl mx-auto text-center space-y-12">
 
-          {/* Hero */}
-          {/* <section>
-            <Image
-              src="/bg-img/velora-logo.png"
-              width={3000}
-              height={1500}
-              alt="Logo"
-              className="mx-auto drop-shadow-[0_5px_20px_rgba(0,255,120,0.35)]"
-            />
-          </section> */}
-
-          {/* Server Info */}
           <section className="bg-green-900/25 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-700/20">
             <h2 className="text-3xl font-bold mb-6 text-emerald-300">Server Information</h2>
 
@@ -60,11 +46,11 @@ export default function AboutPage() {
                 ["BOT:", "Allowed (All Kind Of BOTS)", "text-yellow-300"],
                 ["Arena Manager:", "Working", "text-yellow-300"],
                 ["Mastery Cap:", "220 EU/330 CH", "text-yellow-300"],
-                ["EXP Rate:", " 2x ", "text-yellow-300"],
-                ["Drop Rate:", " 1.5x ", "text-yellow-300"],
-                ["Alchemy Rate:", " 1.5x ", "text-yellow-300"],
-                ["Gold Rate:", " 1.5x ", "text-yellow-300"],
-                ["Max Plus:", " 10 without adv ", "text-yellow-300"],
+                ["EXP Rate:", "2x", "text-yellow-300"],
+                ["Drop Rate:", "1.5x", "text-yellow-300"],
+                ["Alchemy Rate:", "1.5x", "text-yellow-300"],
+                ["Gold Rate:", "1.5x", "text-yellow-300"],
+                ["Max Plus:", "10 without adv", "text-yellow-300"],
                 ["Fortress War:", "Hotan (With a good reward)", "text-yellow-300"],
                 ["Fortress War Day:", "Friday 8 PM to 9:30 PM", "text-yellow-300"],
                 ["Play 2 win:", "Yes", "text-yellow-300"],
@@ -80,42 +66,23 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Start Items */}
           <section className="bg-green-900/25 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-700/20">
-            {/* العنوان في المنتصف */}
-            <div className="flex items-center gap-3 mb-4 justify-start">
-              <h2 className="text-2xl font-bold text-emerald-300 flex-1 text-center">
-                Start Items
-              </h2>
-            </div>
-            
-            {/* الصورة على اليسار والقائمة على اليمين */}
+            <h2 className="text-2xl font-bold mb-4 text-emerald-300 text-center">Start Items</h2>
+
             <div className="flex flex-row items-center sm:items-start justify-center gap-8 pt-4">
-                
-              {/* تنسيق أفضل للقائمة باستخدام Flex/Grid لجعل النص على اليمين */}
               <div className="flex flex-col text-left w-full sm:w-auto space-y-2">
-                
-                {/* تم تعديل القائمة لتكون عناصر قائمة منفصلة داخل div لسهولة التنسيق */}
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">Start Level:</span>
-                    <span className="text-white/80">1</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">100EXP HELPER:</span>
-                    <span className="text-white/80">Included</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">Nasrun:</span>
-                    <span className="text-white/80">7 days</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">Scrolls/Drugs:</span>
-                    <span className="text-white/80">10x Speed Drug, Reverse, Instant, Berserker</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">HP/MP Pots:</span>
-                    <span className="text-white/80">1k MP, 1k HP</span>
-                </div>
+                {[
+                  ["Start Level:", "1"],
+                  ["100EXP HELPER:", "Included"],
+                  ["Nasrun:", "7 days"],
+                  ["Scrolls/Drugs:", "10x Speed Drug, Reverse, Instant, Berserker"],
+                  ["HP/MP Pots:", "1k MP, 1k HP"],
+                ].map(([title, value], i) => (
+                  <div key={i} className="grid grid-cols-[1fr_auto] gap-2">
+                    <span className="text-green-300 font-semibold">{title}</span>
+                    <span className="text-white/80">{value}</span>
+                  </div>
+                ))}
               </div>
               <img
                 src="/about/start items.png"
@@ -126,32 +93,21 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* NPC & Trade */}
           <section className="bg-green-900/25 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-700/20">
-            {/* العنوان في المنتصف */}
-            <div className="flex items-center gap-3 mb-4 justify-start">
-              <h2 className="text-2xl font-bold text-emerald-300 flex-1 text-center">
-                NPC & Trade
-              </h2>
-            </div>
+            <h2 className="text-2xl font-bold mb-4 text-emerald-300 text-center">NPC & Trade</h2>
 
-            {/* الصورة على اليسار والقائمة على اليمين */}
             <div className="flex flex-row items-center sm:items-start justify-center gap-8 pt-4">
-                
-              {/* تنسيق أفضل للقائمة باستخدام Flex/Grid لجعل النص على اليمين */}
               <div className="flex flex-col text-left w-full sm:w-auto space-y-2">
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">NPC Items:</span>
-                    <span className="text-white/80">DG1–DG9 1 Gold, Full Blue 80% state</span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">Trade Route:</span>
-                    <span className="text-white/80">Samarkand → Hotan , Hotan → Samarkand </span>
-                </div>
-                <div className="grid grid-cols-[1fr_auto] gap-2">
-                    <span className="text-green-300 font-semibold">Profit (Buy/Sell):</span>
-                    <span className="text-white/80">2.6m / 55m</span>
-                </div>
+                {[
+                  ["NPC Items:", "DG1–DG9 1 Gold, Full Blue 80% state"],
+                  ["Trade Route:", "Samarkand → Hotan , Hotan → Samarkand"],
+                  ["Profit (Buy/Sell):", "2.6m / 55m"],
+                ].map(([title, value], i) => (
+                  <div key={i} className="grid grid-cols-[1fr_auto] gap-2">
+                    <span className="text-green-300 font-semibold">{title}</span>
+                    <span className="text-white/80">{value}</span>
+                  </div>
+                ))}
               </div>
               <img
                 src="/about/item 1 gold.PNG"
@@ -161,15 +117,10 @@ export default function AboutPage() {
               />
             </div>
           </section>
-          <section className="bg-green-900/25 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-700/20">
-            {/* العنوان في المنتصف */}
-            <div className="flex items-center gap-3 mb-4 justify-start">
-              <h2 className="text-2xl font-bold text-emerald-300 flex-1 text-center">
-                Grab Pet 5 Inventory
-              </h2>
-            </div>
 
-            {/* الصورة على اليسار والقائمة على اليمين */}
+          <section className="bg-green-900/25 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-700/20">
+            <h2 className="text-2xl font-bold mb-4 text-emerald-300 text-center">Grab Pet 5 Inventory</h2>
+
             <div className="flex flex-row items-center sm:items-start justify-center gap-8 pt-4">
               <img
                 src="/about/5 page grab pet.PNG"
@@ -177,14 +128,11 @@ export default function AboutPage() {
                 alt="Pet Feature"
                 onClick={() => openModal("/about/5 page grab pet.PNG")}
               />
-                
-
             </div>
           </section>
         </div>
       </div>
 
-      {/* Modal */}
       {modalImg && (
         <div
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 cursor-pointer"

@@ -222,7 +222,7 @@ export default function ProfilePage() {
                 alt={c.CharName16}
                 width={150}
                 height={150}
-                className="rounded-lg object-cover w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-green-600"
+                className="rounded-lg  w-32 h-32 md:w-40 md:h-65 flex-shrink-0 border border-green-600"
               />
 
               <div className="text-sm space-y-1 md:text-base">
