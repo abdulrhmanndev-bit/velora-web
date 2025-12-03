@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import FortressStatus from "./components/Fortress";
 
 export default function HomePage() {
   return (
@@ -39,6 +40,9 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+      </div>
+      <div>
+        <FortressStatus />
       </div>
     </main>
   );

@@ -5,6 +5,7 @@ interface UniqueLog {
   CharName: string;
   MobName: string;
   time: string;
+  Status:string;
 }
 
 export default function UniqueLogPage() {
@@ -100,6 +101,9 @@ export default function UniqueLogPage() {
                   <th className="px-6 py-3 text-sm font-bold uppercase tracking-wider text-orange-700">
                     Last Killed Time
                   </th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase tracking-wider text-orange-700">
+                    Status
+                  </th>
                 </tr>
               </thead>
 
@@ -114,6 +118,7 @@ export default function UniqueLogPage() {
                     <td className="px-6 py-3 font-medium text-red-300">{row.CharName}</td>
                     <td className="px-6 py-3">{mobNameMap[row.MobName] || row.MobName}</td>
                     <td className="px-6 py-3 font-semibold text-orange-300">{formatTime(row.time)}</td>
+                    <td className="px-6 py-3 font-medium text-red-300">{row.Status}</td>
                   </tr>
                 ))}
               </tbody>
