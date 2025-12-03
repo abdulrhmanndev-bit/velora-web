@@ -10,6 +10,7 @@ export default function TimePage() {
 
   return (
     // تطبيق ستايل صورة الخلفية من صفحة تسجيل الدخول
+    
     <div
         className="min-h-screen w-full px-6 py-10 text-green-300"
       style={{
@@ -20,6 +21,7 @@ export default function TimePage() {
       }}
     >
       
+      <div className="absolute inset-0 bg-black/60  ">
       {/* العنوان: استخدام لون النيون text-green-400 */}
       <h1 className="text-4xl font-bold text-center mb-10 text-orange-400 drop-shadow-[0_0_15px_rgba(25,255,100,0.6)] underline">Server Time Schedule</h1>
 
@@ -157,6 +159,7 @@ export default function TimePage() {
             </CardContent>
           </Card>
         </motion.div>
+      </div>
       </div>
     </div>
   );
