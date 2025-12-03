@@ -162,6 +162,7 @@ export default function SignupPage() {
                     <EnvelopeIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-green-400/70" />
                     <input
                         name="Email"
+                        type="email"
                         placeholder="Email Address"
                         value={form.Email}
                         onChange={handleChange}
