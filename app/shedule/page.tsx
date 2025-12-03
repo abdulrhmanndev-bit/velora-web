@@ -21,7 +21,7 @@ export default function TimePage() {
       }}
     >
       
-      <div className="absolute inset-0 bg-black/60  ">
+      <div className="absolute inset-0 bg-black/60  px-6 py-30">
       {/* العنوان: استخدام لون النيون text-green-400 */}
       <h1 className="text-4xl font-bold text-center mb-10 text-orange-400 drop-shadow-[0_0_15px_rgba(25,255,100,0.6)] underline">Server Time Schedule</h1>
 
