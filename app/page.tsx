@@ -42,7 +42,6 @@ export default function HomePage() {
         </div>
       </div>
       <div>
-        <FortressStatus />
       </div>
     </main>
   );
