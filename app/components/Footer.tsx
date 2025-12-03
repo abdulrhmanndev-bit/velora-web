@@ -81,9 +81,9 @@ export default function Footer() {
           <span>© 2025 Velora. All Rights Reserved.</span>
 
           <div className="flex justify-center md:justify-end gap-6 mt-2 md:mt-0">
-            <Link href="/privacy" className="hover:text-[#d4af37] transition">Privacy</Link>
-            <Link href="/terms" className="hover:text-[#d4af37] transition">Terms</Link>
-            <Link href="/cookies" className="hover:text-[#d4af37] transition">Cookies</Link>
+            <Link href="#" className="hover:text-[#d4af37] transition">Privacy</Link>
+            <Link href="#" className="hover:text-[#d4af37] transition">Terms</Link>
+            <Link href="#" className="hover:text-[#d4af37] transition">Cookies</Link>
           </div>
         </div>
       </div>
