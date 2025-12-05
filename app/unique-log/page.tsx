@@ -54,7 +54,7 @@ export default function UniqueLogPage() {
     MOB_EU_KERBEROS: "Cerberus",
     MOB_KK_ISYUTARU: "Isyutaru",
     MOB_TK_BONELORD: "Lord Yarkan",
-    MOB_RM_TAHOMET: "Devil Shaitan",
+    MOB_RM_TAHOMET: "Demon Shaitan",
     MOB_CH_TIGERWOMAN: "Tiger Girl",
     MOB_SD_SELKIS: "Selket",
     MOB_VALKYRUE: "Valkyrie Of Hell",
@@ -69,6 +69,7 @@ export default function UniqueLogPage() {
     MOB_DEMON_OF_DEATH_TOPS4A: "Demon Of Death",
     MOB_TOPS4A_PENDRAGON: "Pendragon",
     MOB_EV_WINTER_PRINCESS_100: "Princess Miyene",
+    MOB_OA_URUCHI: "Uruchi",
   };
 
   const formatTime = (sqlString: string) => {

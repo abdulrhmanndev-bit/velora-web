@@ -38,7 +38,7 @@ export default function GuildRankPage() {
     <div
       className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/60"
       style={{
-        backgroundImage: "url('/bg-img/home.png')",
+        backgroundImage: "url('/bg-img/home1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

@@ -34,7 +34,6 @@ export default function GuildPage() {
         if (!res.ok) {
             // Handle API errors explicitly, e.g., 404
             const errorData = await res.json();
-            console.error("API Error:", errorData.error);
             setMembers([]);
             setFetchedGuildName(urlGuildName as string); // Show the URL name even if data failed
             setLoading(false);
@@ -46,7 +45,6 @@ export default function GuildPage() {
         // Set the name returned by the API (which might be cleaner/decoded)
         setFetchedGuildName(data.guildName || "Unknown Guild"); 
       } catch (err) {
-        console.error("Fetch error:", err);
         setMembers([]);
         setFetchedGuildName(urlGuildName as string);
       } finally {

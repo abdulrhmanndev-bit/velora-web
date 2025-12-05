@@ -10,7 +10,7 @@ export async function GET() {
           c.CharID,
           c.CharName16,
 
-          -- حساب ItemPoints مباشرة بدون الاعتماد على عمود
+          
           ISNULL((
               SELECT 
                   SUM(
