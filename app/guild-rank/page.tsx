@@ -1,11 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Guild = {
   GuildID: number;
   GuildName: string;
   Lvl: number;
   GatheredSP: number;
+  MemberCount: number;
 };
 
 export default function GuildRankPage() {
@@ -33,13 +35,16 @@ export default function GuildRankPage() {
   }, []);
 
   return (
-    <div className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/60"       style={{
-        backgroundImage: "url('/bg-img/home1.png')",
+    <div
+      className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/60"
+      style={{
+        backgroundImage: "url('/bg-img/home.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-      }}>
-      <div className="absolute flex items-center justify-center w-full" >
+      }}
+    >
+      <div className="absolute flex items-center justify-center w-full">
         <div className="bg-black/80 rounded-2xl shadow-xl max-w-4xl w-full p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-green-400">
             Top 5 Guilds
@@ -49,34 +54,53 @@ export default function GuildRankPage() {
             <table className="min-w-full divide-y divide-green-400 border border-green-500 rounded-lg">
               <thead className="bg-gradient-to-r from-green-400 to-green-600 text-white">
                 <tr>
-                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">Rank</th>
-                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">Guild Name</th>
-                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">Level</th>
-                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">Gathered SP</th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">
+                    Rank
+                  </th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">
+                    Guild Name
+                  </th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">
+                    Level
+                  </th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">
+                    Guild SP
+                  </th>
+                  <th className="px-6 py-3 text-sm font-bold uppercase text-orange-700">
+                    Members Count
+                  </th>
                 </tr>
               </thead>
 
               <tbody className="bg-black/50 divide-y divide-green-500 text-white">
                 {loading ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-3 text-center text-gray-400">Loading...</td>
+                    <td colSpan={5} className="px-6 py-3 text-center text-gray-400">
+                      Loading...
+                    </td>
                   </tr>
                 ) : topGuilds.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-3 text-center text-gray-400">No guilds found</td>
+                    <td colSpan={5} className="px-6 py-3 text-center text-gray-400">
+                      No guilds found
+                    </td>
                   </tr>
                 ) : (
                   topGuilds.map((guild, index) => (
                     <tr
                       key={guild.GuildID}
-                      className={`transition-all hover:bg-green-400/30 ${
+                      onClick={() => window.location.href = `/guild/${guild.GuildName}`}
+                      className={`transition-all hover:bg-green-400/30 cursor-pointer ${
                         index % 2 === 0 ? "bg-black/40" : "bg-black/50"
                       }`}
                     >
                       <td className="px-6 py-3 font-medium">{index + 1}</td>
                       <td className="px-6 py-3">{guild.GuildName}</td>
                       <td className="px-6 py-3 text-center">{guild.Lvl}</td>
-                      <td className="px-6 py-3 text-center">{Math.floor(guild.GatheredSP / 1000)}</td>
+                      <td className="px-6 py-3 text-center">
+                        {Math.floor(guild.GatheredSP / 1000)}
+                      </td>
+                      <td className="px-6 py-3 text-center">{guild.MemberCount}</td>
                     </tr>
                   ))
                 )}

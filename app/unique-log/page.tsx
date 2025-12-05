@@ -64,6 +64,11 @@ export default function UniqueLogPage() {
     MOB_SD_ISIS: "Isis",
     MOB_SD_HAROERIS: "Haroeris",
     MOB_SD_SETH: "Seth",
+    MOB_EV_WINTER_WHITEKNIGHT_100: "White Knight",
+    MOB_KNIGHT_MAGIC_TOPS4A: "Knight Of Magic",
+    MOB_DEMON_OF_DEATH_TOPS4A: "Demon Of Death",
+    MOB_TOPS4A_PENDRAGON: "Pendragon",
+    MOB_EV_WINTER_PRINCESS_100: "Princess Miyene",
   };
 
   const formatTime = (sqlString: string) => {

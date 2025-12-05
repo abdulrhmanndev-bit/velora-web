@@ -14,7 +14,7 @@ export default function PlayersRanking() {
 
   const fetchPlayers = async () => {
     try {
-      const res = await fetch("/api/itempoints");
+      const res = await fetch("/api/players-ranking");
       const data = await res.json();
       setPlayers(data.data || []);
     } catch (err) {
@@ -50,7 +50,7 @@ export default function PlayersRanking() {
       <div className="absolute flex items-center justify-center w-full">
         <div className="bg-black/70 rounded-2xl shadow-xl max-w-4xl w-full p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-green-400">
-            Players Ranking
+            TOP 10 Players Ranking
           </h1>
 
           <div className="overflow-x-auto shadow-[0_0_50px_rgba(25,255,100,0.6)]">
