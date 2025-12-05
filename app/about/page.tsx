@@ -45,7 +45,7 @@ export default function AboutPage() {
     ["Drop Rate:", "1.5x"],
     ["Alchemy Rate:", "1.5x"],
     ["Gold Rate:", "1.5x"],
-    ["Max Plus:", "10 without adv"],
+    ["Max Plus:", "12 without adv"],
     ["Fortress War:", "Hotan (With a good reward)"],
     ["Fortress War Day:", "Friday 8 PM to 9:30 PM"],
     ["Play 2 win:", "Yes"],

@@ -1,4 +1,5 @@
 import React from 'react';
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 // Updated gallery images with proper unique files
 const galleryImages = [
@@ -13,15 +14,21 @@ const galleryImages = [
 /**
  * Fullscreen Modal Component.
  */
-const ImageModal = ({ image, onClose }: { image: { src: string; alt: string }; onClose: () => void }) => {
+const ImageModal = ({
+  image,
+  onClose,
+}: {
+  image: { src: string; alt: string };
+  onClose: () => void;
+}) => {
 
   React.useEffect(() => {
     const handleEscape = (e: any) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
   if (!image.src) return null;
@@ -35,17 +42,13 @@ const ImageModal = ({ image, onClose }: { image: { src: string; alt: string }; o
         className="relative max-w-5xl w-full max-h-full p-4"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Close Button with Heroicon */}
         <button
           onClick={onClose}
           className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-50 p-3 rounded-full bg-amber-500 text-zinc-950 hover:bg-amber-600 transition shadow-lg"
           aria-label="Close Viewer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-            viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" fill="none"
-            strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
+          <XMarkIcon className="w-7 h-7 font-bold" />
         </button>
 
         <img
@@ -54,7 +57,8 @@ const ImageModal = ({ image, onClose }: { image: { src: string; alt: string }; o
           className="w-full h-auto max-h-[90vh] object-contain rounded-xl shadow-2xl border-2 border-amber-500/50"
           onError={(e) => {
             e.currentTarget.onerror = null;
-            e.currentTarget.src = "https://placehold.co/1000x600/18181b/ffffff?text=Image+Not+Found";
+            e.currentTarget.src =
+              "https://placehold.co/1000x600/18181b/ffffff?text=Image+Not+Found";
           }}
         />
 
@@ -67,9 +71,17 @@ const ImageModal = ({ image, onClose }: { image: { src: string; alt: string }; o
 };
 
 /**
- * Image Card (visible always)
+ * Image Card
  */
-const ImageCard = ({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) => {
+const ImageCard = ({
+  src,
+  alt,
+  onClick,
+}: {
+  src: string;
+  alt: string;
+  onClick: () => void;
+}) => {
   return (
     <div
       className="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer transition-all duration-500"
@@ -81,7 +93,8 @@ const ImageCard = ({ src, alt, onClick }: { src: string; alt: string; onClick: (
         className="w-full h-full object-cover aspect-[3/2] group-hover:scale-105 group-hover:brightness-75 transition duration-500"
         onError={(e) => {
           e.currentTarget.onerror = null;
-          e.currentTarget.src = "https://placehold.co/600x400/18181b/ffffff?text=Image+Not+Found";
+          e.currentTarget.src =
+            "https://placehold.co/600x400/18181b/ffffff?text=Image+Not+Found";
         }}
       />
 
@@ -94,13 +107,15 @@ const ImageCard = ({ src, alt, onClick }: { src: string; alt: string; onClick: (
   );
 };
 
-
 /**
  * Main Gallery
  */
 const GalleryPage = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [selectedImage, setSelectedImage] = React.useState({ src: '', alt: '' });
+  const [selectedImage, setSelectedImage] = React.useState({
+    src: "",
+    alt: "",
+  });
 
   const openModal = (image: { src: string; alt: string }) => {
     setSelectedImage(image);
@@ -109,13 +124,12 @@ const GalleryPage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedImage({ src: '', alt: '' });
+    setSelectedImage({ src: "", alt: "" });
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-gray-100 p-8 sm:p-12 md:p-16">
+    <div className="min-h-screen text-gray-100 p-8 sm:p-12 md:p-16 bg-green-1000/10 ">
       <div className="max-w-7xl mx-auto">
-
         <header className="text-center mb-16">
           <p className="text-sm uppercase tracking-widest text-amber-500 font-semibold mb-2">
             Gallery
@@ -141,7 +155,9 @@ const GalleryPage = () => {
         </div>
       </div>
 
-      {isModalOpen && <ImageModal image={selectedImage} onClose={closeModal} />}
+      {isModalOpen && (
+        <ImageModal image={selectedImage} onClose={closeModal} />
+      )}
     </div>
   );
 };
