@@ -17,15 +17,15 @@ const allClassesData = [
     className: 'HARP',
     subTitle: 'Melody of Ruin',
     description:
-      'Swift and deadly masters of sonic warfare, the Harp character combines precision string work with shadow manipulation. They eliminate targets using powerful, resonating chords before their foes can detect the source of the attack.',
-    abilities: ['Precision Shot', 'Shadow Step', 'Sonic Barrier', 'Melody of Ruin'],
+      'Swift and deadly masters of sonic warfare, the Harp character combines precision string work with shadow manipulation.',
+    abilities: ['Precision Shot',  'Sonic Barrier', 'Melody of Ruin'],
   },
   {
     classImage: '/hero/warrior.png', // Placeholder for another class
     className: 'WARRIOR',
     subTitle: 'Ironclad Sentinel',
     description:
-      'Unstoppable frontline fighters clad in heavy armor. Warriors use raw strength and unwavering defense to protect allies and crush foes.',
+      'Unstoppable frontline fighters clad in heavy armor. Warriors use raw strength and unwavering defense to protect allies .',
     abilities: ['Tectonic Slam', 'Defensive Stance', 'Bloodlust'],
   },
   {

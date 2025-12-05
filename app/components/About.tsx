@@ -26,7 +26,7 @@ const TrailerVideoPlayer = () => {
   };
 
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden 
+    <div className="relative w-full h-130 aspect-video rounded-xl overflow-hidden 
                     shadow-2xl shadow-green-900/50 border-2 border-green-700/50 group" >
       
       {/* HTML Video Tag */}
