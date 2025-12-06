@@ -21,7 +21,7 @@ const allClassesData = [
     abilities: ['Precision Shot',  'Sonic Barrier', 'Melody of Ruin'],
   },
   {
-    classImage: '/hero/warrior.png', // Placeholder for another class
+    classImage: '/hero/warriorr.png', // Placeholder for another class
     className: 'WARRIOR',
     subTitle: 'Ironclad Sentinel',
     description:
@@ -29,7 +29,7 @@ const allClassesData = [
     abilities: ['Tectonic Slam', 'Defensive Stance', 'Bloodlust'],
   },
   {
-    classImage: '/hero/wizzard.png', // Placeholder for another class
+    classImage: '/hero/wizzardd.png', // Placeholder for another class
     className: 'WIZZARD',
     subTitle: 'Arcane Weaver',
     description:
