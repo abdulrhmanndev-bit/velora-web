@@ -1,6 +1,8 @@
 'use client'
+
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function TimePage() {
   const sectionVariants = {
@@ -9,16 +11,21 @@ export default function TimePage() {
   };
 
   return (
-    <div
-      className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/50"
-      style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div>
+    <div className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      <div className="relative z-10">
         <h1 className="text-4xl font-bold text-center mb-10 text-orange-400 drop-shadow-[0_0_15px_rgba(25,255,100,0.6)] underline">
           Server Time Schedule
         </h1>
@@ -37,7 +44,7 @@ export default function TimePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-green-800/30 transition"> 
+                    <tr className="hover:bg-green-800/30 transition">
                       <td className="p-2">Random Arena</td>
                       <td className="p-2 text-yellow-400 font-medium">09:30–12:30 AM & 15:30</td>
                     </tr>
@@ -76,7 +83,7 @@ export default function TimePage() {
                     <tr className="hover:bg-green-800/30 transition">
                       <td className="p-2">Selket & Neith</td>
                       <td className="p-2 text-yellow-400 font-medium">11:00–13:00 PM | 16:00–18:00 PM</td>
-                      <td className="p-2 text-yellow-400 font-semibold">Silver Coins</td> 
+                      <td className="p-2 text-yellow-400 font-semibold">Silver Coins</td>
                     </tr>
                     <tr className="hover:bg-green-800/30 transition">
                       <td className="p-2">Anubis & Isis</td>

@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
@@ -10,26 +11,37 @@ import { UserIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 export default function Navbar() {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLogout = async () => {
     await logout();
     router.replace("/login");
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+      if (
+        desktopDropdownRef.current &&
+        !desktopDropdownRef.current.contains(event.target as Node)
+      ) {
+        setDesktopDropdownOpen(false);
+      }
+      if (
+        mobileDropdownRef.current &&
+        !mobileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setMobileDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const navLinks = [
@@ -74,26 +86,28 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          {/* Desktop Dropdown */}
+          <div className="relative" ref={desktopDropdownRef}>
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
               className="hover:text-green-400 flex items-center gap-1 transition duration-300"
             >
               Rankings
               <ChevronDownIcon
-                className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`}
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  desktopDropdownOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
 
-            {dropdownOpen && (
+            {desktopDropdownOpen && (
               <div className="absolute mt-2 w-48 bg-green-900 border border-green-700 rounded-lg shadow-xl z-50 overflow-hidden">
                 {rankLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
                     className="block px-4 py-2 text-green-100 hover:text-green-400 hover:drop-shadow-[0_0_10px_rgba(25,255,100,0.6)] transition bg-gradient-to-r from-green-900 via-green-800 to-green-900"
-                    onClick={() => setDropdownOpen(false)}
+                    onClick={() => setDesktopDropdownOpen(false)}
                   >
                     {link.name}
                   </Link>
@@ -147,9 +161,19 @@ export default function Navbar() {
               xmlns="http://www.w3.org/2000/svg"
             >
               {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -171,25 +195,30 @@ export default function Navbar() {
           ))}
 
           {/* Mobile Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative" ref={mobileDropdownRef}>
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
               className="flex justify-between w-full text-green-100 hover:text-green-400 transition"
             >
               Rankings
               <ChevronDownIcon
-                className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`}
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  mobileDropdownOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
 
-            {dropdownOpen && (
+            {mobileDropdownOpen && (
               <div className="mt-1 space-y-1 pl-4">
                 {rankLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
                     className="block text-green-100 hover:text-green-400 hover:drop-shadow-[0_0_10px_rgba(25,255,100,0.6)] transition"
-                    onClick={() => { setDropdownOpen(false); setIsOpen(false); }}
+                    onClick={() => {
+                      setMobileDropdownOpen(false);
+                      setIsOpen(false);
+                    }}
                   >
                     {link.name}
                   </Link>
@@ -217,7 +246,7 @@ export default function Navbar() {
             </>
           ) : (
             <div className="flex flex-col gap-2">
-              <Link href="/profile" onClick={() => setIsOpen(false)} className="">
+              <Link href="/profile" onClick={() => setIsOpen(false)}>
                 Profile
               </Link>
               <button className="text-left" onClick={handleLogout}>

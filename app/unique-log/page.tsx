@@ -1,18 +1,19 @@
-"use client";
+'use client';
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface UniqueLog {
   CharName: string;
   MobName: string;
   time: string;
-  Status:string;
+  Status: string;
 }
 
 export default function UniqueLogPage() {
-  const [players, setPlayers] = useState<UniqueLog[]>([]);
+  const [logs, setLogs] = useState<UniqueLog[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchPlayers = async () => {
+  const fetchLogs = async () => {
     try {
       const res = await fetch("/api/unique-log");
       const data = await res.json();
@@ -29,7 +30,7 @@ export default function UniqueLogPage() {
         (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
       );
 
-      setPlayers(sorted);
+      setLogs(sorted);
     } catch (err) {
       console.error(err);
     } finally {
@@ -38,17 +39,21 @@ export default function UniqueLogPage() {
   };
 
   useEffect(() => {
-    fetchPlayers();
-    const interval = setInterval(fetchPlayers, 5000);
+    fetchLogs();
+    const interval = setInterval(fetchLogs, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  if (loading)
-    return (
-      <div className="p-4 text-center text-gray-500 font-medium">
-        Loading...
-      </div>
-    );
+  // Placeholder rows to prevent layout shift
+  const renderPlaceholderRows = () =>
+    Array.from({ length: 10 }).map((_, idx) => (
+      <tr key={idx} className="bg-black/40 h-12 animate-pulse">
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+      </tr>
+    ));
 
   const mobNameMap: { [key: string]: string } = {
     MOB_EU_KERBEROS: "Cerberus",
@@ -79,17 +84,22 @@ export default function UniqueLogPage() {
   };
 
   return (
-    <div
-      className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/50"
-      style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-black/70 rounded-2xl shadow-xl w-full max-w-4xl p-6">
+    <div className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      <div className="relative z-10 flex items-center justify-center w-full">
+        <div className="bg-black/70 rounded-2xl shadow-xl max-w-4xl w-full p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-green-400">
             Unique Log
           </h1>
@@ -114,7 +124,7 @@ export default function UniqueLogPage() {
               </thead>
 
               <tbody className="bg-black/50 divide-y divide-green-500 text-white">
-                {players.map((row, index) => (
+                {loading ? renderPlaceholderRows() : logs.map((row, index) => (
                   <tr
                     key={index}
                     className={`transition-all hover:bg-green-400/30 ${

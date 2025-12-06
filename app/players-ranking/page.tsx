@@ -1,5 +1,6 @@
-"use client";
+'use client';
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Player {
   CharID: number;
@@ -30,24 +31,34 @@ export default function PlayersRanking() {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading)
-    return (
-      <div className="p-4 text-center text-gray-500 font-medium">
-        Loading...
-      </div>
-    );
+  // Render placeholder rows to prevent CLS
+  const renderPlaceholderRows = () => {
+    return Array.from({ length: 10 }).map((_, idx) => (
+      <tr key={idx} className={`bg-black/40 h-12 animate-pulse`}>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+      </tr>
+    ));
+  };
 
   return (
-    <div
-      className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/50"
-      style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute flex items-center justify-center w-full">
+    <div className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      <div className="relative z-10 flex items-center justify-center w-full">
         <div className="bg-black/70 rounded-2xl shadow-xl max-w-4xl w-full p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-green-400">
             TOP 10 Players Ranking
@@ -73,7 +84,7 @@ export default function PlayersRanking() {
               </thead>
 
               <tbody className="bg-black/50 divide-y divide-green-500 text-white">
-                {players.map((player, index) => (
+                {loading ? renderPlaceholderRows() : players.map((player, index) => (
                   <tr
                     key={player.CharID}
                     className={`transition-all hover:bg-green-400/30 ${

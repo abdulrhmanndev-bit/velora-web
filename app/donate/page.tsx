@@ -31,7 +31,7 @@ export default function DonatePage() {
           {offers.map((item, idx) => (
             <li key={idx} className="flex justify-between items-center bg-green-900 p-4 rounded-xl shadow-md hover:scale-105 transition">
               <span className="text-green-100 font-semibold text-2xl">{item.silk} Silk</span>
-              <span className="text-red-400 font-bold text-2xl">{item.price}</span>
+              <span className="text-red-400 font-bold text-2xl">{item.price} USD</span>
             </li>
           ))}
         </ul>
@@ -40,7 +40,7 @@ export default function DonatePage() {
       <div className="bg-green-900/20 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-2xl mx-auto text-green-400 drop-shadow-[0_0_15px_rgba(25,255,100,0.4)] my-10">
         <h2 className="text-xl font-bold mb-6 text-center text-orange-600">
           Egyptian Players Contact Us Via{" "}
-          <Link href="https://www.facebook.com/profile.php?id=61584111351914" target="_blank">
+          <Link href="https://www.facebook.com/profile.php?id=61584111351914" className="underline text-white" target="_blank">
             Facebook
           </Link>{" "}
           for Silk Donation

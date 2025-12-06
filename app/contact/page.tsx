@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { GlobeAltIcon, EnvelopeIcon, ChatBubbleLeftRightIcon, MusicalNoteIcon, PlayCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 export default function ContactSection() {
@@ -13,16 +14,20 @@ export default function ContactSection() {
   ];
 
   return (
-    <section
-      className="h-screen flex items-center justify-center text-center relative"
-      style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/50" />
+    <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
       <div className="relative z-10 max-w-5xl mx-auto p-8 rounded-2xl shadow-[0_0_50px_rgba(25,255,100,0.2)] bg-black/50 backdrop-blur-sm border border-green-700/50">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-green-300 shadow-green-500/50 tracking-wider py-2 flex items-center justify-center mb-16">
           <GlobeAltIcon className="w-8 h-8 mr-3 text-green-400" />

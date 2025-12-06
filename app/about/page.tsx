@@ -1,27 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
+import Image from "next/image";
 
 const IMAGE_SIZE_CLASS = "w-36 h-36 md:w-48 md:h-48";
 
 type InfoRowProps = { title: string; value: string; extraClass?: string };
-type ImageModalProps = { src: string; onClick: () => void; alt: string };
+type ImageBoxProps = { src: string; onClick: () => void; alt: string };
 
-const InfoRow = ({ title, value, extraClass = "text-white/85" }: InfoRowProps) => (
+// Memoized InfoRow
+const InfoRow = memo(({ title, value, extraClass = "text-white/85" }: InfoRowProps) => (
   <div className="grid grid-cols-2 border-b border-green-800/30 pb-2 last:border-none">
     <span className="font-semibold text-emerald-300">{title}</span>
     <span className={extraClass}>{value}</span>
   </div>
-);
+));
 
-const ImageBox = ({ src, alt, onClick }: ImageModalProps) => (
-  <img
-    src={src}
-    alt={alt}
-    onClick={onClick}
-    className={`object-contain cursor-pointer hover:scale-110 transition-transform flex-shrink-0 ${IMAGE_SIZE_CLASS}`}
-  />
-);
+// Memoized ImageBox with next/image
+const ImageBox = memo(({ src, alt, onClick }: ImageBoxProps) => (
+  <div className={`relative flex-shrink-0 ${IMAGE_SIZE_CLASS} cursor-pointer`} onClick={onClick}>
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className="object-contain transition-transform hover:scale-110"
+      sizes="(max-width: 768px) 9rem, 12rem"
+      priority={false}
+      quality={75}
+      loading="lazy"
+    />
+  </div>
+));
 
 export default function AboutPage() {
   const [modalImg, setModalImg] = useState<string | null>(null);
@@ -69,16 +78,19 @@ export default function AboutPage() {
   ];
 
   return (
-    <main
-      className="relative text-white overflow-hidden"
-      style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/60" />
+    <main className="relative text-white overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-6 py-24 lg:py-40">
         <div className="max-w-4xl mx-auto text-center space-y-12">
@@ -156,7 +168,15 @@ export default function AboutPage() {
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 cursor-pointer"
           onClick={closeModal}
         >
-          <img src={modalImg} className="max-w-[90%] max-h-[90%] object-contain" alt="Zoomed" />
+          <Image
+            src={modalImg}
+            alt="Zoomed"
+            width={1200}
+            height={800}
+            className="max-w-[90%] max-h-[90%] object-contain"
+            loading="lazy"
+            priority={false}
+          />
         </div>
       )}
     </main>

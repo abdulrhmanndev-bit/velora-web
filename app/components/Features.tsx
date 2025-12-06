@@ -8,7 +8,13 @@ import {
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'; 
 
-const featureData = [
+interface Feature {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  description: string;
+}
+
+const featureData: Feature[] = [
   {
     icon: TrophyIcon,
     title: 'EPIC BATTLES & GUILD WARS',
@@ -36,14 +42,15 @@ const featureData = [
 ];
 
 // Memoized Feature Card
-const FeatureCard = memo(({ feature }: { feature: typeof featureData[0] }) => (
+const FeatureCard = memo(({ feature }: { feature: Feature }) => (
   <div
     className="bg-[#123030]/80 backdrop-blur-sm p-6 rounded-xl shadow-2xl transition-transform duration-300 hover:scale-[1.03] border border-green-700/30"
   >
-    <div className="w-16 h-16 bg-[#1B4D3E] rounded-full flex items-center justify-center mb-6 
-                    border-2 border-[#C6A664] 
-                    shadow-[0_0_20px_0_rgba(198,166,100,0.6)] 
-                    transition-all duration-300 group-hover:shadow-[0_0_30px_0_rgba(198,166,100,0.8)]"
+    <div
+      className="w-16 h-16 bg-[#1B4D3E] rounded-full flex items-center justify-center mb-6 
+                 border-2 border-[#C6A664] 
+                 shadow-[0_0_20px_0_rgba(198,166,100,0.6)] 
+                 transition-all duration-300 group-hover:shadow-[0_0_30px_0_rgba(198,166,100,0.8)]"
     >
       <feature.icon className="w-8 h-8 text-[#C6A664] drop-shadow-[0_0_5px_rgba(27,77,62,0.5)]" />
     </div>

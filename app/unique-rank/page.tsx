@@ -1,5 +1,6 @@
-"use client";
+'use client';
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 type RankItem = {
   CharName: string;
@@ -8,6 +9,7 @@ type RankItem = {
 
 export default function UniqueRankTable() {
   const [ranking, setRanking] = useState<RankItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -24,6 +26,8 @@ export default function UniqueRankTable() {
       } catch (err) {
         console.error(err);
         setRanking([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,14 +36,45 @@ export default function UniqueRankTable() {
     return () => clearInterval(interval);
   }, []);
 
+  const renderPlaceholderRows = () =>
+    Array.from({ length: 10 }).map((_, idx) => (
+      <tr key={idx} className="bg-black/40 h-12 animate-pulse">
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+        <td className="px-6 py-3">&nbsp;</td>
+      </tr>
+    ));
+
+  const getRankClass = (index: number) => {
+    switch (index) {
+      case 0:
+        return "text-yellow-400 font-bold";
+      case 1:
+        return "text-gray-300 font-bold";
+      case 2:
+        return "text-orange-300 font-bold";
+      default:
+        return "";
+    }
+  };
+
   return (
-    <div className="h-screen flex relative items-center justify-center text-center before:absolute before:inset-0 before:bg-black/60"       style={{
-        backgroundImage: "url('/bg-img/home1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}>
-      <div className="absolute flex items-center justify-center w-full">
+    <div className="h-screen relative flex items-center justify-center text-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg-img/home1.png"
+          alt="Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex items-center justify-center w-full">
         <div className="bg-black/80 rounded-2xl shadow-xl max-w-4xl w-full p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-green-400">
             Top 10 Unique Hunters
@@ -56,18 +91,20 @@ export default function UniqueRankTable() {
               </thead>
 
               <tbody className="bg-black/50 divide-y divide-green-500 text-white">
-                {ranking.map((player, index) => (
-                  <tr
-                    key={`${player.CharName}-${index}`}
-                    className={`transition-all hover:bg-green-400/30 ${
-                      index % 2 === 0 ? "bg-black/40" : "bg-black/50"
-                    }`}
-                  >
-                    <td className="px-6 py-3 font-medium">{index + 1}</td>
-                    <td className="px-6 py-3">{player.CharName}</td>
-                    <td className="px-6 py-3 font-semibold text-green-300">{player.TotalPoints}</td>
-                  </tr>
-                ))}
+                {loading
+                  ? renderPlaceholderRows()
+                  : ranking.map((player, index) => (
+                      <tr
+                        key={`${player.CharName}-${index}`}
+                        className={`transition-all hover:bg-green-400/30 ${
+                          index % 2 === 0 ? "bg-black/40" : "bg-black/50"
+                        }`}
+                      >
+                        <td className={`px-6 py-3 ${getRankClass(index)}`}>{index + 1}</td>
+                        <td className="px-6 py-3">{player.CharName}</td>
+                        <td className="px-6 py-3 font-semibold text-green-300">{player.TotalPoints}</td>
+                      </tr>
+                    ))}
               </tbody>
             </table>
           </div>
