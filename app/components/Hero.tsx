@@ -13,26 +13,74 @@ const allClassesData = [
   {
     classImage: "/hero/harp.png",
     className: "HARP",
-    subTitle: "Melody of Ruin",
+    subTitle: "Melodic Assassin",
     description:
-      "Swift and deadly masters of sonic warfare, blending precision sound manipulation with shadow–borne agility.",
+      "Agile and elusive, Harps use sound-based attacks to disrupt enemies and control the battlefield with precision.",
     abilities: ["Precision Shot", "Sonic Barrier", "Melody of Ruin"],
   },
   {
     classImage: "/hero/warriorr.png",
     className: "WARRIOR",
-    subTitle: "Ironclad Sentinel",
+    subTitle: "Ironclad Fighter",
     description:
-      "Unstoppable frontline protectors clad in heavy armor, wielding immense strength and defensive mastery.",
+      "Frontline melee masters with high defense and strong sword skills, excelling in close-range combat.",
     abilities: ["Tectonic Slam", "Defensive Stance", "Bloodlust"],
   },
   {
     classImage: "/hero/wizzardd.png",
     className: "WIZZARD",
-    subTitle: "Arcane Weaver",
+    subTitle: "Elemental Mage",
     description:
-      "Masters of elemental magic, unleashing devastating long-range spells at the cost of physical fragility.",
+      "Harnesses the power of fire, ice, and lightning to deal devastating ranged magical attacks, but fragile in melee combat.",
     abilities: ["Fireball Barrage", "Time Warp", "Earth Quaker"],
+  },
+  {
+    classImage: "/hero/spear.png",
+    className: "SPEAR",
+    subTitle: "Piercing Defender",
+    description:
+      "Versatile warriors with strong single-target attacks and reach, excelling at controlling enemy movements in PvP.",
+    abilities: ["Spear Thrust", "Defensive Stance", "Whirlwind Attack"],
+  },
+  {
+    classImage: "/hero/archer.png",
+    className: "ARCHER",
+    subTitle: "Ranged Hunter",
+    description:
+      "Masters of long-range attacks, capable of dealing consistent damage from a distance while staying mobile.",
+    abilities: ["Arrow Rain", "Sniper Shot", "Evasion"],
+  },
+  {
+    classImage: "/hero/sword.png",
+    className: "SWORD",
+    subTitle: "Dueling Champion",
+    description:
+      "Balanced melee fighter with high attack speed and critical damage, perfect for dueling and skirmishes.",
+    abilities: ["Slash", "Counter Attack", "Blade Dance"],
+  },
+  {
+    classImage: "/hero/dagger.png",
+    className: "DAGGER",
+    subTitle: "Stealth Assassin",
+    description:
+      "Quick and deadly, Daggers excel at sneaking behind enemies and delivering lethal burst damage.",
+    abilities: ["Backstab", "Shadow Step", "Poison Strike"],
+  },
+  {
+    classImage: "/hero/crossbow.png",
+    className: "CROSSBOW",
+    subTitle: "Heavy Shooter",
+    description:
+      "Ranged specialists using crossbows to pierce through armor and deal high burst damage from a safe distance.",
+    abilities: ["Piercing Bolt", "Rapid Fire", "Explosive Shot"],
+  },
+  {
+    classImage: "/hero/healer.png",
+    className: "HEALER",
+    subTitle: "Divine Protector",
+    description:
+      "Supports allies with healing and buffs, ensuring the survival of the team during long battles.",
+    abilities: ["Heal", "Protective Shield", "Revive"],
   },
 ];
 
