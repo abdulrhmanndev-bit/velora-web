@@ -6,6 +6,7 @@ import {
   ChatBubbleLeftRightIcon,
   ShieldCheckIcon, 
 } from "@heroicons/react/24/outline";
+import { cinzel } from "./Gallery";
 
 
 
@@ -17,7 +18,7 @@ export default function Footer() {
 
         {/* Left Column */}
         <div className="space-y-4">
-          <h1 className="text-3xl font-serif tracking-wider">VELORA</h1>
+          <h1 className={`${cinzel.className} text-3xl font-serif tracking-wider`}>VELORA</h1>
           <p className="text-sm text-[#d4af37]/80 leading-relaxed">
             Embark on an epic journey through a world of magic, mystery, and adventure.
             Your legend begins here.
@@ -80,10 +81,8 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between text-center md:text-left text-sm text-[#d4af37]/70">
           <span>© 2025 Velora. All Rights Reserved.</span>
 
-          <div className="flex justify-center md:justify-end gap-6 mt-2 md:mt-0">
-            <Link href="#" className="hover:text-[#d4af37] transition">Privacy</Link>
-            <Link href="#" className="hover:text-[#d4af37] transition">Terms</Link>
-            <Link href="#" className="hover:text-[#d4af37] transition">Cookies</Link>
+          <div className="flex justify-center md:justify-end gap-2 mt-2 md:mt-0">
+            Designed & Coded By <Link href="https://www.facebook.com/profile.php?id=61583202925408" target="_blank" className="text-[#d4af37] hover:underline">Pixlyne</Link>
           </div>
         </div>
       </div>

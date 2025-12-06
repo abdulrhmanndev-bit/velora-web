@@ -7,6 +7,7 @@ import {
   UserCircleIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'; 
+import { cinzel } from './Gallery';
 
 interface Feature {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -85,7 +86,7 @@ const Feature = () => {
           <p className="text-sm tracking-widest uppercase text-green-600/90 border-b border-amber-600/50 pb-1 w-fit mx-auto">
             Features
           </p>
-          <h2 className="mt-4 text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-400 drop-shadow-[0_0_10px_rgba(255,200,0,0.3)] tracking-wider">
+          <h2 className={`${cinzel.className}  mt-4 text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-400 drop-shadow-[0_0_10px_rgba(255,200,0,0.3)] tracking-wider`}>
             FORGE YOUR LEGEND
           </h2>
           <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">

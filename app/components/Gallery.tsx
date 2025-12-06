@@ -1,8 +1,9 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { Cinzel_Decorative } from "next/font/google";
+ export const cinzel = Cinzel_Decorative({ subsets: ["latin"], weight: ["400", "700", "900"]});
 
 // Optimized images
 const galleryImages = [
@@ -105,6 +106,7 @@ const ImageCard = ({
 /* -------------------------- MAIN PAGE -------------------------- */
 
 const GalleryPage = () => {
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState({
     src: "",
@@ -127,13 +129,13 @@ const GalleryPage = () => {
             Gallery
           </p>
 
-          <h1 className="text-6xl md:text-7xl font-serif tracking-tight text-white mb-4 italic">
+          <h1 className={`${cinzel.className} font-bold text-6xl md:text-7xl font-serif tracking-tight text-white mb-4 italic`}>
             WORLD OF <span className="text-amber-500">VELORA</span>
           </h1>
 
           <div className="w-16 h-0.5 bg-amber-500 mx-auto mb-6"></div>
 
-          <p className="text-lg text-gray-400 max-w-xl mx-auto">
+          <p className={` text-lg text-gray-400 max-w-xl mx-auto`}>
             Witness the breathtaking landscapes and epic moments that await you
           </p>
         </header>

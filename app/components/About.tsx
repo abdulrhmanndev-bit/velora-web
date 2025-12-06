@@ -1,6 +1,7 @@
 import React, { useRef, useState, memo } from "react";
 import Image from "next/image";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
+import { cinzel } from "./Gallery";
 
 // --- Static Data ---
 const GAME_STATS = [
@@ -95,9 +96,9 @@ export default function About() {
               About the Game
             </p>
 
-            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text 
-              bg-gradient-to-r from-amber-200 to-amber-400 drop-shadow-[0_0_10px_rgba(255,200,0,0.3)]
-              tracking-wider text-center lg:text-left">
+            <h1 className={`${cinzel.className} text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text 
+              bg-gradient-to-r leading-20 from-amber-200 to-amber-400 drop-shadow-[0_0_10px_rgba(255,200,0,0.3)]
+              tracking-wider text-center lg:text-left`}>
               THE LEGEND OF VELORA
             </h1>
 

@@ -43,7 +43,7 @@ export default function HomePage() {
             ].map((btn) => (
               <Link key={btn.href} href={btn.href}>
                 <button
-                  className="inline-flex items-center justify-center rounded-2xl px-6 py-3 bg-gradient-to-br from-[#0faa52] to-[#0a7a3b] text-black font-semibold drop-shadow-[0_0_15px_rgba(25,255,100,0.6)] shadow-2xl hover:text-amber-50 hover:scale-[1.02] transition"
+                  className="inline-flex items-center justify-center rounded-2xl px-6 py-3 bg-gradient-to-br from-[#0faa52] to-[#0a7a3b] text-white font-semibold drop-shadow-[0_0_15px_rgba(25,255,100,0.6)] shadow-2xl hover:text-amber-50 hover:scale-[1.02] transition"
                 >
                   {btn.label}
                 </button>
