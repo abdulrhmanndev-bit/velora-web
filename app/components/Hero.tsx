@@ -30,7 +30,7 @@ const allClassesData = [
   },
   {
     classImage: '/hero/wizzard.png', // Placeholder for another class
-    className: 'MAGE',
+    className: 'WIZZARD',
     subTitle: 'Arcane Weaver',
     description:
       'Masters of ancient magic, Mages wield elemental forces to devastate opponents from a distance. A true glass cannon.',
