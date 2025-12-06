@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       `);
 
     if (!res.recordset.length) {
-      return NextResponse.json({ error: "Verification failed" }, { status: 401 });
+      return NextResponse.json({ error: "Invalid Email or Password or Current Secret Code" }, { status: 401 });
     }
 
     const JID = res.recordset[0].JID;
