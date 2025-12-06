@@ -31,7 +31,7 @@ const allClassesData = [
     className: "WIZZARD",
     subTitle: "Elemental Mage",
     description:
-      "Harnesses the power of fire, ice, and lightning to deal devastating ranged magical attacks, but fragile in melee combat.",
+      "The power of fire, ice, and lightning to deal devastating ranged magical attacks, but fragile in melee combat.",
     abilities: ["Fireball Barrage", "Time Warp", "Earth Quaker"],
   },
   {
