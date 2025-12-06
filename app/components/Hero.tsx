@@ -82,6 +82,14 @@ const allClassesData = [
       "Supports allies with healing and buffs, ensuring the survival of the team during long battles.",
     abilities: ["Heal", "Protective Shield", "Revive"],
   },
+  {
+    classImage: "/hero/warlock.png",
+    className: "WARLOCK",
+    subTitle: "Dark Summoner",
+    description:
+      "Masters of curses and dark magic, Warlocks deal high damage over time while weakening enemies and slowing them.",
+    abilities: ["Shadow Curse", "Blood Pact", "Life Drain"],
+  },
 ];
 
 export default function ClassesAndHeroes() {
