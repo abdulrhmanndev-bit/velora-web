@@ -1,15 +1,13 @@
-// app/components/Feature.tsx
+"use client";
 
-import React from 'react';
-// Corrected Heroicons imports
+import React, { memo } from 'react';
 import { 
-  TrophyIcon,         // For Battles/Guild Wars
-  GlobeAltIcon,       // For Open World
-  UserCircleIcon,     // For Character Customization
-  WrenchScrewdriverIcon, // For Trade, Craft & Conquer
+  TrophyIcon,
+  GlobeAltIcon,
+  UserCircleIcon,
+  WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'; 
 
-// Array defining the content for each feature card
 const featureData = [
   {
     icon: TrophyIcon,
@@ -37,22 +35,45 @@ const featureData = [
   },
 ];
 
+// Memoized Feature Card
+const FeatureCard = memo(({ feature }: { feature: typeof featureData[0] }) => (
+  <div
+    className="bg-[#123030]/80 backdrop-blur-sm p-6 rounded-xl shadow-2xl transition-transform duration-300 hover:scale-[1.03] border border-green-700/30"
+  >
+    <div className="w-16 h-16 bg-[#1B4D3E] rounded-full flex items-center justify-center mb-6 
+                    border-2 border-[#C6A664] 
+                    shadow-[0_0_20px_0_rgba(198,166,100,0.6)] 
+                    transition-all duration-300 group-hover:shadow-[0_0_30px_0_rgba(198,166,100,0.8)]"
+    >
+      <feature.icon className="w-8 h-8 text-[#C6A664] drop-shadow-[0_0_5px_rgba(27,77,62,0.5)]" />
+    </div>
+
+    <h3 className="text-xl font-bold uppercase tracking-wider mb-3 text-green-200">
+      {feature.title}
+    </h3>
+
+    <p className="text-sm text-gray-300 leading-relaxed">
+      {feature.description}
+    </p>
+  </div>
+));
+
 const Feature = () => {
   return (
-    <section className="py-20 md:py-32 text-white" style={{
+    <section
+      className="py-20 md:py-32 text-white relative overflow-hidden"
+      style={{
         backgroundImage: "url('/feature/Feature.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-      }}>
-      {/* Background Section: Gold/Bronze Gradient */}
-      {/* Note: If you are using a background image, you may remove the following div or adjust opacity */}
+      }}
+    >
+      {/* Dark overlay */}
       <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#2a2a2a] to-[#0a1515] opacity-50 -z-10"></div>
-      
-      {/* Container for Centering Content */}
+
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
-        
-        {/* Header Section */}
+        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-sm tracking-widest uppercase text-green-600/90 border-b border-amber-600/50 pb-1 w-fit mx-auto">
             Features
@@ -68,29 +89,7 @@ const Feature = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {featureData.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-[#123030]/80 backdrop-blur-sm p-6 rounded-xl shadow-2xl transition-transform duration-300 hover:scale-[1.03] border border-green-700/30"
-            >
-              {/* Icon */}
-<div className="w-16 h-16 bg-[#1B4D3E] rounded-full flex items-center justify-center mb-6 
-                border-2 border-[#C6A664] 
-                shadow-[0_0_20px_0_rgba(198,166,100,0.6)] 
-                transition-all duration-300 group-hover:shadow-[0_0_30px_0_rgba(198,166,100,0.8)]"
->
-    <feature.icon className="w-8 h-8 text-[#C6A664] drop-shadow-[0_0_5px_rgba(27,77,62,0.5)]" />
-</div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold uppercase tracking-wider mb-3 text-green-200">
-                {feature.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-gray-300 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
+            <FeatureCard key={index} feature={feature} />
           ))}
         </div>
       </div>
@@ -98,4 +97,4 @@ const Feature = () => {
   );
 };
 
-export default Feature;
+export default memo(Feature);
