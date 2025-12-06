@@ -20,31 +20,35 @@ export default function GuildPage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
+  // Fetch members function
+  const fetchMembers = async () => {
     if (!urlGuildName) return;
-
-    const fetchMembers = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(`/api/guild/${urlGuildName}?page=${page}`);
-        if (!res.ok) {
-          setMembers([]);
-          setFetchedGuildName(Array.isArray(urlGuildName) ? urlGuildName[0] : urlGuildName);
-          setLoading(false);
-          return;
-        }
-        const data = await res.json();
-        setMembers(data.members || []);
-        setFetchedGuildName(data.guildName || (Array.isArray(urlGuildName) ? urlGuildName[0] : urlGuildName));
-      } catch (err) {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/guild/${urlGuildName}?page=${page}`);
+      if (!res.ok) {
         setMembers([]);
         setFetchedGuildName(Array.isArray(urlGuildName) ? urlGuildName[0] : urlGuildName);
-      } finally {
-        setLoading(false);
+        return;
       }
-    };
+      const data = await res.json();
+      setMembers(data.members || []);
+      setFetchedGuildName(data.guildName || (Array.isArray(urlGuildName) ? urlGuildName[0] : urlGuildName));
+    } catch (err) {
+      console.error(err);
+      setMembers([]);
+      setFetchedGuildName(Array.isArray(urlGuildName) ? urlGuildName[0] : urlGuildName);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  // Fetch on mount, page change, or guildName change
+  useEffect(() => {
     fetchMembers();
+    // Auto-refresh every 5 seconds
+    const interval = setInterval(fetchMembers, 5000);
+    return () => clearInterval(interval);
   }, [urlGuildName, page]);
 
   const renderPlaceholderRows = () =>
@@ -61,7 +65,6 @@ export default function GuildPage() {
 
   return (
     <div className="min-h-screen flex relative items-center justify-center text-center overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <Image
           src="/bg-img/home1.png"
@@ -120,7 +123,6 @@ export default function GuildPage() {
             </table>
           </div>
 
-          {/* Pagination */}
           <div className="flex justify-center gap-4 mt-6">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
